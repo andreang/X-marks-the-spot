@@ -1,6 +1,6 @@
-const PLAYER_X_CLASS = 'x';
-const PLAYER_O_CLASS = 'circle';
-const WINNING_COMBINATIONS = [
+const playerX = 'x';
+const playerO = 'circle';
+const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
