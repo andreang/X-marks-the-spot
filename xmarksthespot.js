@@ -103,10 +103,6 @@ function selectWinner() {
         checkIdSign(1, 5, 9, playerMark) ||
         checkIdSign(3, 5, 7, playerMark)
     ) {
-        // setTimeout(() => {
-        //     selectBox.classList.remove('hide');
-        //     board.classList.remove('show');
-        // }, 700);
         winningMessageText.innerHTML = `Player <p>${playerMark}</p> has won.`;
         resultBox.style.display = 'block';
     } else {
@@ -121,11 +117,6 @@ function selectWinner() {
             getIdVal(8) != '' &&
             getIdVal(9) != ''
         ) {
-            //  ///           setTimeout(() => {
-            //                 selectBox.classList.remove('hide');
-            //                 board.classList.remove('show');
-            //             }, 700);
-            //
             winningMessageText.textContent = 'Match has been drawn!';
             resultBox.style.display = 'block';
         }

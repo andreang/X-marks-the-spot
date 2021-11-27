@@ -141,13 +141,13 @@ header {
     user-select: none;
     transition: all 0.3 ease;
 }
-.players.active span:first-child {
+.players .active {
     color: #fff;
 }
-.players.active span:last-child {
+.players .active {
     color: #cbcbcb;
 }
-.players span:first-child {
+.players span {
     color: #fff;
 }
 .players .slider {
