@@ -2,15 +2,13 @@ const selectBox = document.querySelector('.select-box');
 const selectBoxX = selectBox.querySelector('.setup .playerX');
 const selectBoxO = selectBox.querySelector('.setup .playerO');
 const board = document.querySelector('.gameplay');
-const players = document.querySelector('.players');
+const playerX = document.querySelector('.players .playerX');
+const playerO = document.querySelector('.players .playerO');
 const allBoard = document.querySelectorAll('section span');
 const resultBox = document.querySelector('.results');
 const winningMessageText = resultBox.querySelector('.winner');
-const restartButton = results.querySelector('restartButton');
-let playerX = 'fas fa-times';
-let playerO = 'far fa-circle';
+const restartButton = resultBox.querySelector('.newgamebutton');
 let playerMark = 'X';
-let runBot = true;
 
 window.onload = () => {
     for (let i = 0; i < allBoard.length; i++) {
@@ -21,63 +19,67 @@ window.onload = () => {
 selectBoxX.onclick = () => {
     selectBox.classList.add('hide');
     board.classList.add('show');
+    playerX.setAttribute('class', 'playerX active');
 };
 
 selectBoxO.onclick = () => {
     selectBox.classList.add('hide');
     board.classList.add('show');
-    players.setAttribute('class', 'players active player');
+    playerO.setAttribute('class', 'playerO active');
 };
 
 function clickedBox(element) {
-    if (players.classList.contains('player')) {
+    if (playerO.classList.contains('active')) {
         playerMark = 'O';
-        element.innerHTML = `<i class="${playerO}"></i>`;
-        players.classList.remove('active');
+        element.innerHTML = playerMark;
+        playerO.classList.toggle('active');
+        playerX.classList.toggle('active');
         element.setAttribute('id', playerMark);
     } else {
-        element.innerHTML = `<i class="${playerX}"></i>`;
+        playerMark = 'X';
+        element.innerHTML = playerMark;
+        playerO.classList.toggle('active');
+        playerX.classList.toggle('active');
         element.setAttribute('id', playerMark);
-        players.classList.add('active');
     }
     selectWinner();
     element.style.pointerEvents = 'none';
     board.style.pointerEvents = 'none';
     let randomTimeDelay = (Math.random() * 1000 + 200).toFixed();
     setTimeout(() => {
-        bot(runBot);
+        bot();
     }, randomTimeDelay);
 }
 // RUNBOT: https://www.youtube.com/c/CodingNepal/videos
 
 function bot() {
     let array = [];
-    if (runBot) {
-        playerMark = 'O';
-        for (let i = 0; i < allBoard.length; i++) {
-            if (allBoard[i].childElementCount == 0) {
-                array.push(i);
-            }
+    for (let i = 0; i < allBoard.length; i++) {
+        if (allBoard[i].childElementCount == 0) {
+            array.push(i);
         }
-        let randomBox = array[Math.floor(Math.random() * array.length)];
-        if (array.length > 0) {
-            if (players.classList.contains('player')) {
-                playerMark = 'X';
-                allBoard[randomBox].innerHTML = `<i class="${playerX}"></i>`;
-                allBoard[randomBox].setAttribute('id', playerMark);
-                players.classList.add('active');
-            } else {
-                allBoard[randomBox].innerHTML = `<i class="${playerO}"></i>`;
-                players.classList.remove('active');
-                allBoard[randomBox].setAttribute('id', playerMark);
-            }
-            selectWinner();
-        }
-        allBoard[randomBox].style.pointerEvents = 'none';
-        board.style.pointerEvents = 'auto';
-        playerMark = 'X';
     }
+    let randomBox = array[Math.floor(Math.random() * array.length)];
+    if (array.length > 0) {
+        if (playerO.classList.contains('active')) {
+            playerMark = 'O';
+            allBoard[randomBox].innerHTML = playerMark;
+            playerO.classList.toggle('active');
+            playerX.classList.toggle('active');
+            allBoard[randomBox].setAttribute('id', playerMark);
+        } else {
+            playerMark = 'X';
+            allBoard[randomBox].innerHTML = playerMark;
+            playerO.classList.toggle('active');
+            playerX.classList.toggle('active');
+            allBoard[randomBox].setAttribute('id', playerMark);
+        }
+        selectWinner();
+        allBoard[randomBox].style.pointerEvents = 'none';
+    }
+    board.style.pointerEvents = 'auto';
 }
+
 function getIdVal(classname) {
     return document.querySelector('.box' + classname).id;
 }
@@ -101,13 +103,12 @@ function selectWinner() {
         checkIdSign(1, 5, 9, playerMark) ||
         checkIdSign(3, 5, 7, playerMark)
     ) {
-        runBot = false;
-        bot(runBot);
-        setTimeout(() => {
-            results.classList.add('show');
-            board.classList.remove('show');
-        }, 700);
+        // setTimeout(() => {
+        //     selectBox.classList.remove('hide');
+        //     board.classList.remove('show');
+        // }, 700);
         winningMessageText.innerHTML = `Player <p>${playerMark}</p> has won.`;
+        resultBox.style.opacity = 1;
     } else {
         if (
             getIdVal(1) != '' &&
@@ -120,16 +121,16 @@ function selectWinner() {
             getIdVal(8) != '' &&
             getIdVal(9) != ''
         ) {
-            runBot = false;
-            bot(runBot);
-            setTimeout(() => {
-                results.classList.add('show');
-                board.classList.remove('show');
-            }, 700);
-            winningMessageTextElement.textContent = 'Match has been drawn!';
+            //  ///           setTimeout(() => {
+            //                 selectBox.classList.remove('hide');
+            //                 board.classList.remove('show');
+            //             }, 700);
+            //
+            winningMessageText.textContent = 'Match has been drawn!';
+            resultBox.style.opacity = 1;
         }
     }
 }
-restartButton.onclick = () => {
+restartButton.addEventListener('click', function () {
     window.location.reload();
-};
+});

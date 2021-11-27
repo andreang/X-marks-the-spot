@@ -16,7 +16,8 @@ body {
     background: #cbcbcb;
 }
 
-p {
+p,
+header {
     font-family: 'Indie Flower', cursive;
     font-weight: bold;
     font-size: 16pt;
@@ -39,6 +40,7 @@ p {
     transition: all 0.3s ease;
 }
 .select-box {
+    z-index: 1;
     background: #ffffff;
     padding: 20px 25px 25px;
     border-radius: 5px;
@@ -109,12 +111,10 @@ p {
 
 .gameplay {
     opacity: 0;
-    pointer-events: none;
     transform: translate(-50%, -50%) scale(0.9);
 }
 .gameplay.show {
     opacity: 1;
-    pointer-events: auto;
     transform: translate(-50%, -50%) scale(1);
 }
 .gameplay .details {
@@ -193,6 +193,7 @@ p {
 }
 
 .results {
+    z-index: 1;
     padding: 25px 20px;
     border-radius: 5px;
     max-width: 400px;
@@ -200,7 +201,6 @@ p {
     opacity: 0;
     text-align: center;
     background: #fff;
-    pointer-events: none;
     transform: translate(-50%, -50%) scale(0.9);
 }
 .results .show {
