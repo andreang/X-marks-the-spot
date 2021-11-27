@@ -6,26 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic tac toe</title>
         <link rel="stylesheet" type="text/css" href="xmarksthespot.css">
-        <script src="xmarksthespot.js"></script>
+<!-- FONTAWESOME ICON-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
-        <div id="main">
-            <h1>TIC TAC TOE</h1>
-            <div id="settings">
-                <h2>X</h2> <input type="text" id="playerX">
-                <h2>O</h2> <input type="text" id="playerO">
-                <br><button type="submit" value="Start game">
+
+<!-- CHALK EFFECT: https://codepen.io/shshaw/pen/jmMpmd -->
+    <svg class=no-area>
+        <filter id=chalk>
+            <feTurbulence result=T numOctaves=3 seed=0 type=fractalNoise baseFrequency=.4 />
+            <feOffset dy=-2 dx=-2 />
+            <feDisplacementMap in2=T scale=5 xChannelSelector=R yChannelSelector=G in=SourceGraphic />
+        </filter>
+    </svg>
+
+    <div class="select-box">
+            <header>Tic Tac Toe</header>
+                <div class="title">Let's play!</div>
+                <div class="setup">
+                  <button class="playerX">Play as X</button>
+                  <button class="playerO">Play as O</button>
+                 </div>
+        </div>
+    </div>
+    <div class="gameplay">
+            <header>Tic Tac Toe</header>
+            <div id="players">
+                <span class="playerX">Player (X)</span>
+                <span class="playerO">Player (O)</span>
+                <div class="slider"></div>
             </div>
             <div id="board">
-                <div class="box" id="1"></div>
-                <div class="box" id="2"></div>
-                <div class="box" id="3"></div>
-                <div class="box" id="4"></div>
-                <div class="box" id="5"></div>
-                <div class="box" id="6"></div>
-                <div class="box" id="7"></div>
-                <div class="box" id="8"></div>
-                <div class="box" id="9"></div>
+                <section>
+                    <span class="box1"></span>
+                    <span class="box2"></span>
+                    <span class="box3"></span>
+                </section>
+                <section>
+                    <span class="box4"></span>
+                    <span class="box5"></span>
+                    <span class="box6"></span>
+                </section>
+                <section>
+                    <span class="box7"></span>
+                    <span class="box8"></span>
+                    <span class="box9"></span>
+                </section>
             </div>
+    </div>
+    <div class="results">
+            <div class="winner"></div>
+            <div class="newgamebutton"><button>Play again?</button></div>
+    </div>
+
+        <script src="xmarksthespot.js"></script>
 </body>
 </html>
