@@ -55,7 +55,7 @@ function clickedBox(element) {
 function bot() {
     let array = [];
     for (let i = 0; i < allBoard.length; i++) {
-        if (allBoard[i].childElementCount == 0) {
+        if (allBoard[i].textContent == '') {
             array.push(i);
         }
     }
@@ -108,7 +108,7 @@ function selectWinner() {
         //     board.classList.remove('show');
         // }, 700);
         winningMessageText.innerHTML = `Player <p>${playerMark}</p> has won.`;
-        resultBox.style.opacity = 1;
+        resultBox.style.display = 'block';
     } else {
         if (
             getIdVal(1) != '' &&
@@ -127,7 +127,7 @@ function selectWinner() {
             //             }, 700);
             //
             winningMessageText.textContent = 'Match has been drawn!';
-            resultBox.style.opacity = 1;
+            resultBox.style.display = 'block';
         }
     }
 }

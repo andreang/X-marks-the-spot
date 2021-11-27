@@ -48,7 +48,7 @@ header {
     width: 100%;
 }
 .select-box.hide {
-    opacity: 0;
+    display: none;
     pointer-events: none;
 }
 .select-box header {
@@ -110,11 +110,11 @@ header {
 }
 
 .gameplay {
-    opacity: 0;
+    display: none;
     transform: translate(-50%, -50%) scale(0.9);
 }
 .gameplay.show {
-    opacity: 1;
+    display: block;
     transform: translate(-50%, -50%) scale(1);
 }
 .gameplay .details {
@@ -198,13 +198,13 @@ header {
     border-radius: 5px;
     max-width: 400px;
     width: 100%;
-    opacity: 0;
+    display: none;
     text-align: center;
     background: #fff;
     transform: translate(-50%, -50%) scale(0.9);
 }
 .results .show {
-    opacity: 1;
+    display: block;
     pointer-events: auto;
     transform: translate(-50%, -50%) scale(1);
 }
